@@ -158,4 +158,4 @@ Merge
 
 ---
 
-**Record the music. Remember the moment. 🎵**
+_Dear Music, Love MUBLE._ ♡
