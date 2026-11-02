@@ -2,7 +2,7 @@ import { forwardRef, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { inputFieldTokens } from './inputField.tokens';
-import { InputFieldProps, InputFieldVisualState } from './InputField.types';
+import type { InputFieldProps, InputFieldVisualState } from './InputField.types';
 
 export const InputField = forwardRef<TextInput, InputFieldProps>(
   (
@@ -91,7 +91,7 @@ export const InputField = forwardRef<TextInput, InputFieldProps>(
             setIsFocused(false);
             onBlur?.(event);
           }}
-          placeholderTextColor={placeholderTextColor ?? stateColors.text}
+          placeholderTextColor={placeholderTextColor ?? stateColors.placeholder}
           style={[
             styles.input,
             {

@@ -1,13 +1,16 @@
-import { typography } from '@/styles';
+import { componentTokens, semanticTokens, typography } from '@/styles';
 
-import { InputFieldVisualState } from './InputField.types';
+import type { InputFieldVisualState } from './InputField.types';
 
 type InputFieldStateColors = {
-  background?: string;
-  border?: string;
-  text?: string;
-  icon?: string;
+  background: string;
+  border: string;
+  text: string;
+  placeholder: string;
+  icon: string;
 };
+
+const input = componentTokens.input;
 
 export const inputFieldTokens = {
   size: {
@@ -23,96 +26,102 @@ export const inputFieldTokens = {
 
   border: {
     width: 1,
-    radius: 8,
+    radius: input.radius.number,
   },
 
   typography: typography.body1,
 
   figmaColorTokens: {
     default: {
-      background: 'color/bg/primary',
-      border: 'color/border/tertiary',
-      text: 'color/text/tertiary',
-      icon: 'color/icon/tertiary',
+      background: 'color/background/primary',
+      border: 'color/border/default',
+      text: 'color/text/primary',
+      icon: 'color/icon/secondary',
     },
 
     focus: {
-      background: 'color/bg/primary',
-      border: 'color/border/info',
-      text: 'color/text/tertiary',
-      icon: 'color/icon/tertiary',
+      background: 'color/background/secondary',
+      border: 'color/border/strong',
+      text: 'color/text/primary',
+      icon: 'color/icon/primary',
     },
 
     fill: {
-      background: 'color/bg/primary',
-      border: 'color/border/tertiary',
+      background: 'color/background/primary',
+      border: 'color/border/default',
       text: 'color/text/primary',
-      icon: 'color/icon/tertiary',
+      icon: 'color/icon/secondary',
     },
 
     error: {
-      background: 'color/bg/primary',
-      border: 'color/border/error',
+      background: 'color/background/primary',
+      border: 'color/status/error',
       text: 'color/text/primary',
-      icon: 'color/icon/tertiary',
+      icon: 'color/icon/secondary',
     },
 
     success: {
-      background: 'color/bg/primary',
-      border: 'color/border/success',
+      background: 'color/background/primary',
+      border: 'color/status/success',
       text: 'color/text/primary',
-      icon: 'color/icon/tertiary',
+      icon: 'color/icon/secondary',
     },
 
     disabled: {
-      background: 'color/bg/disable',
-      border: 'color/border/disable',
-      text: 'color/text/disable',
-      icon: 'color/icon/disable',
+      background: 'color/background/tertiary',
+      border: 'color/border/subtle',
+      text: 'color/text/disabled',
+      icon: 'color/icon/disabled',
     },
   },
 
   colors: {
     default: {
-      background: undefined,
-      border: undefined,
-      text: undefined,
-      icon: undefined,
+      background: input.background.default,
+      border: input.border.default,
+      text: input.text.value,
+      placeholder: input.text.placeholder,
+      icon: input.icon.default,
     },
 
     focus: {
-      background: undefined,
-      border: undefined,
-      text: undefined,
-      icon: undefined,
+      background: input.background.focus,
+      border: input.border.focus,
+      text: input.text.value,
+      placeholder: input.text.placeholder,
+      icon: input.icon.focus,
     },
 
     fill: {
-      background: undefined,
-      border: undefined,
-      text: undefined,
-      icon: undefined,
+      background: input.background.default,
+      border: input.border.default,
+      text: input.text.value,
+      placeholder: input.text.placeholder,
+      icon: input.icon.default,
     },
 
     error: {
-      background: undefined,
-      border: undefined,
-      text: undefined,
-      icon: undefined,
+      background: input.background.default,
+      border: input.border.error,
+      text: input.text.value,
+      placeholder: input.text.placeholder,
+      icon: input.icon.default,
     },
 
     success: {
-      background: undefined,
-      border: undefined,
-      text: undefined,
-      icon: undefined,
+      background: input.background.default,
+      border: semanticTokens.color.status.success,
+      text: input.text.value,
+      placeholder: input.text.placeholder,
+      icon: input.icon.default,
     },
 
     disabled: {
-      background: undefined,
-      border: undefined,
-      text: undefined,
-      icon: undefined,
+      background: input.background.disabled,
+      border: input.border.disabled,
+      text: input.text.disabled,
+      placeholder: input.text.disabled,
+      icon: input.icon.disabled,
     },
   } satisfies Record<InputFieldVisualState, InputFieldStateColors>,
 } as const;
