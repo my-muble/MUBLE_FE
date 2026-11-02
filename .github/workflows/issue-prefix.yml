@@ -1,4 +1,4 @@
-name: Add TFS issue prefix
+name: Add MUBLE issue prefix
 
 on:
   issues:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Add TFS number to issue title
+      - name: Add MUBLE number to issue title
         uses: actions/github-script@v8
         with:
           script: |
@@ -34,11 +34,11 @@ jobs:
                 item.number < currentIssue.number
             );
 
-            const tfsNumber = previousIssues.length + 1;
-            const prefix = `[TFS-${tfsNumber}]`;
+            const mubleNumber = previousIssues.length + 1;
+            const prefix = `[MUBLE-${mubleNumber}]`;
 
             const cleanTitle = currentIssue.title.replace(
-              /^\[TFS-\d+\]\s*/,
+              /^\[(?:TFS|MUBLE)-\d+\]\s*/,
               ''
             );
 
