@@ -22,7 +22,11 @@ export const componentTokens = {
 
   navigationBar: {
     background: {
-      default: withOpacity(semanticTokens.color.background.secondary, 0.8),
+      default: withOpacity(semanticTokens.color.background.primary, 0.8),
+    },
+
+    border: {
+      default: semanticTokens.color.background.primary,
     },
 
     icon: {
@@ -220,6 +224,7 @@ export const componentTokens = {
       title: semanticTokens.color.text.primary,
       body: semanticTokens.color.text.secondary,
       metadata: semanticTokens.color.text.tertiary,
+      inverse: semanticTokens.color.text.inverse,
       disabled: semanticTokens.color.text.disabled,
     },
 
@@ -333,8 +338,8 @@ export const componentTokens = {
   },
 
   divider: {
-    default: semanticTokens.color.border.subtle,
-    strong: semanticTokens.color.border.default,
+    default: semanticTokens.color.border.default,
+    strong: semanticTokens.color.border.strong,
   },
 
   sectionHeader: {
@@ -476,6 +481,14 @@ export const componentTokens = {
 
       icon: {
         chevron: semanticTokens.color.icon.secondary,
+      },
+
+      border: {
+        divider: semanticTokens.color.border.default,
+      },
+
+      background: {
+        pressed: semanticTokens.color.background.primary,
       },
     },
 
