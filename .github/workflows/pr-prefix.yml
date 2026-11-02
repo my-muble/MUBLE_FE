@@ -1,4 +1,4 @@
-name: Add TFS PR prefix
+name: Add MUBLE PR prefix
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Add TFS number to PR title
+      - name: Add MUBLE number to PR title
         uses: actions/github-script@v8
         with:
           script: |
@@ -39,17 +39,19 @@ jobs:
               issue_number: issueNumber,
             });
 
-            const tfsMatch = issue.title.match(/^\[(TFS-\d+)\]/);
+            const mubleMatch = issue.title.match(
+              /^\[(?:TFS|MUBLE)-(\d+)\]/
+            );
 
-            if (!tfsMatch) {
-              core.info('TFS number not found in issue title.');
+            if (!mubleMatch) {
+              core.info('MUBLE number not found in issue title.');
               return;
             }
 
-            const prefix = `[${tfsMatch[1]}]`;
+            const prefix = `[MUBLE-${mubleMatch[1]}]`;
 
             const cleanTitle = pr.title.replace(
-              /^\[TFS-\d+\]\s*/,
+              /^\[(?:TFS|MUBLE)-\d+\]\s*/,
               ''
             );
 

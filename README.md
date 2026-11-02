@@ -1,4 +1,4 @@
-# 🎧 TypeForSheet Frontend
+# 🎧 MUBLE Frontend
 
 > 좋아하는 음악을 평가하고, 그 음악과 함께한 순간을 기록하는 개인 음악 아카이브
 
@@ -30,8 +30,8 @@
 ## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/TypeForSheet/TypeForSheet_FE.git
-cd TypeForSheet_FE
+git clone https://github.com/my-muble/MUBLE_FE.git
+cd MUBLE_FE
 npm install
 ```
 
@@ -76,7 +76,7 @@ label/description
 feat/login
 ui/home-screen
 fix/search-error
-chore/env-setting
+chore/muble-rebranding
 ```
 
 ### Type
@@ -95,27 +95,29 @@ chore/env-setting
 [FEAT] 음악 검색 기능 구현
 [UI] 로그인 화면 구현
 [FIX] 검색 오류 수정
-[CHORE] 환경변수 설정
+[CHORE] MUBLE 리브랜딩 설정 변경
 ```
 
 ---
 
 ## 🔢 Issue & PR
 
-Issue에는 연속된 `TFS` 작업 번호를 사용합니다.
+Issue에는 연속된 `MUBLE` 작업 번호를 사용합니다.
 
 ```text
-[TFS-1] [CHORE] 소셜 로그인 인증 환경 초기 세팅
-[TFS-2] [CHORE] 환경변수 관리 구조 설정
+[MUBLE-1] [CHORE] 소셜 로그인 인증 환경 초기 세팅
+[MUBLE-2] [CHORE] 환경변수 관리 구조 설정
 ```
 
-연결된 PR은 Issue와 동일한 `TFS` 번호를 사용합니다.
+연결된 PR은 Issue와 동일한 `MUBLE` 번호를 사용합니다.
 
 PR에서 실제 Issue를 연결할 때는 GitHub Issue 번호를 사용합니다.
 
 ```text
 Closes #3
 ```
+
+기존 TFS 작업 번호는 유지하며, 신규 작업부터 MUBLE 명칭을 사용합니다.
 
 ---
 
@@ -156,4 +158,4 @@ Merge
 
 ---
 
-**Record the music. Remember the moment. 🎵**
+_Dear Music, Love MUBLE._ ♡
