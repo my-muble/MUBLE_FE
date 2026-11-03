@@ -297,7 +297,8 @@ function RecordSection({
         showsHorizontalScrollIndicator={false}
         decelerationRate="fast"
         snapToInterval={RECORD_WIDTH + RECORD_GAP}
-        onMomentumScrollEnd={handleScrollEnd}
+        onScroll={handleScrollEnd}
+        scrollEventThrottle={32}
         contentContainerStyle={styles.recordList}
       >
         {records.map((record) => (
