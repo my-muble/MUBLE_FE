@@ -81,7 +81,7 @@ const iuArtists: SearchItem[] = [
 export function getDemoSearchData(query: string): SearchData {
   const value = query.trim().toLowerCase();
 
-  if (value.includes('아이') || value === 'iu') {
+  if (value.includes('아이유') || value === 'iu') {
     return {
       songs: iuSongs,
       albums: iuAlbums,

@@ -12,10 +12,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, layout, typography } from '@/styles';
 
+import { useRecentSearches } from './RecentSearchContext';
+
 import SearchResults from './SearchResults';
 
 import {
-  demoRecentSearches,
   demoSuggestions,
   EMPTY_SEARCH_DATA,
   getDemoSearchData,
@@ -54,10 +55,7 @@ export default function SearchScreen({ mode }: Props) {
 
   const [activeTab, setActiveTab] = useState<SearchTab>('all');
 
-  const [recentSearches, setRecentSearches] = useState<string[]>(
-    USE_DEMO_DATA ? demoRecentSearches : [],
-  );
-
+  const { recentSearches, addRecentSearch, removeRecentSearch } = useRecentSearches();
   const searchData = useMemo(
     () => (USE_DEMO_DATA ? getDemoSearchData(query) : EMPTY_SEARCH_DATA),
     [query],
@@ -100,9 +98,7 @@ export default function SearchScreen({ mode }: Props) {
       return;
     }
 
-    setRecentSearches((previous) =>
-      [keyword, ...previous.filter((item) => item !== keyword)].slice(0, 10),
-    );
+    addRecentSearch(keyword);
 
     router.push({
       pathname: '/search/results',
@@ -110,10 +106,6 @@ export default function SearchScreen({ mode }: Props) {
         q: keyword,
       },
     });
-  };
-
-  const removeRecent = (value: string) => {
-    setRecentSearches((previous) => previous.filter((item) => item !== value));
   };
 
   return (
@@ -171,7 +163,18 @@ export default function SearchScreen({ mode }: Props) {
               </Text>
 
               {mode === 'result' && query.length > 0 && (
-                <Ionicons name="close-circle-outline" size={20} color={colors.gray[500]} />
+                <Pressable
+                  onPress={(event) => {
+                    event.stopPropagation();
+                    setQuery('');
+                    openPreview('');
+                  }}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel="검색어 지우기"
+                >
+                  <Ionicons name="close-circle-outline" size={20} color={colors.gray[500]} />
+                </Pressable>
               )}
             </Pressable>
           )}
@@ -197,7 +200,7 @@ export default function SearchScreen({ mode }: Props) {
 
                 <Pressable
                   style={styles.removeButton}
-                  onPress={() => removeRecent(item)}
+                  onPress={() => removeRecentSearch(item)}
                   accessibilityLabel={`${item} 삭제`}
                 >
                   <Ionicons name="close" size={18} color={colors.gray[500]} />
