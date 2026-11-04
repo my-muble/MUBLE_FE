@@ -166,7 +166,6 @@ export default function SearchScreen({ mode }: Props) {
                 <Pressable
                   onPress={(event) => {
                     event.stopPropagation();
-                    setQuery('');
                     openPreview('');
                   }}
                   hitSlop={8}
