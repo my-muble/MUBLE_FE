@@ -1,5 +1,5 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import SearchScreen from '@/features/search/SearchScreen';
 
-export default function Screen() {
-  return <PlaceholderScreen title="검색 결과" description="전체 · 곡 · 앨범 · 아티스트" />;
+export default function SearchResult() {
+  return <SearchScreen mode="result" />;
 }
