@@ -1,5 +1,5 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import SearchScreen from '@/features/search/SearchScreen';
 
-export default function Screen() {
-  return <PlaceholderScreen title="검색" description="최근 검색어 및 검색어 입력" />;
+export default function SearchIndex() {
+  return <SearchScreen mode="initial" />;
 }

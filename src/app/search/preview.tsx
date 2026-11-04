@@ -1,5 +1,5 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import SearchScreen from '@/features/search/SearchScreen';
 
-export default function Screen() {
-  return <PlaceholderScreen title="검색 미리보기" description="입력 중 관련 음악 미리보기" />;
+export default function SearchPreview() {
+  return <SearchScreen mode="preview" />;
 }

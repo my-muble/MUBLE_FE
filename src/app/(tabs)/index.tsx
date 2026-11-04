@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { Alert } from 'react-native';
 
 import HomeScreen from '@/features/home/HomeScreen';
@@ -6,7 +7,7 @@ export default function HomeTab() {
   return (
     <HomeScreen
       onSearchPress={() => {
-        Alert.alert('검색', '검색 화면 연결 예정입니다.');
+        router.push('/search');
       }}
       onAlbumPress={(albumId) => {
         Alert.alert('앨범 상세', `앨범 ID: ${albumId}`);
