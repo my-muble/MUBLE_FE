@@ -1,5 +1,22 @@
 import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function SearchLayout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+import { RecentSearchProvider } from '@/features/search/RecentSearchContext';
+
+export default function RootLayout() {
+  return (
+    <SafeAreaProvider>
+      <RecentSearchProvider>
+        <StatusBar style="auto" />
+
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            animation: 'default',
+          }}
+        />
+      </RecentSearchProvider>
+    </SafeAreaProvider>
+  );
 }
