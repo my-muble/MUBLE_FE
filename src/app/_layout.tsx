@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { RecentSearchProvider } from '@/features/search/RecentSearchContext';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -34,14 +35,16 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar style="auto" />
+      <RecentSearchProvider>
+        <StatusBar style="auto" />
 
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          animation: 'default',
-        }}
-      />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            animation: 'default',
+          }}
+        />
+      </RecentSearchProvider>
     </SafeAreaProvider>
   );
 }
