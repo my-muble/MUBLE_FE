@@ -29,8 +29,8 @@ const unit = {
 export const primitiveTokens = {
   color: {
     brand: {
-      black: '#000000',
-      white: '#FFFFFF',
+      black: '#0B0B0B',
+      white: '#FDFDFD',
     },
 
     neutral: {

@@ -1,5 +1,6 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import ArchiveScreen from '@/features/archive/ArchiveScreen';
+import { archiveMockData } from '@/features/archive/archiveMockData';
 
-export default function Screen() {
-  return <PlaceholderScreen title="Archive" description="시간별 · 앨범별 내 기록" />;
+export default function ArchiveTab() {
+  return <ArchiveScreen {...archiveMockData} />;
 }

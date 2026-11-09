@@ -1,64 +1,94 @@
-export const fontWeight = {
-  regular: '400',
-  medium: '500',
-  semiBold: '600',
-  bold: '700',
+// useFonts 키와 동일해야 하며, 커스텀 폰트는 굵기별로 family가 달라 fontWeight를 쓰지 않는다.
+export const fontFamily = {
+  light: 'NotoSansKR_300Light',
+  regular: 'NotoSansKR_400Regular',
+  medium: 'NotoSansKR_500Medium',
+  bold: 'NotoSansKR_700Bold',
+  black: 'NotoSansKR_900Black',
 } as const;
 
 export const typography = {
   head1: {
-    fontSize: 22,
-    lineHeight: 35.2,
-    fontWeight: fontWeight.semiBold,
+    fontFamily: fontFamily.black,
+    fontSize: 24,
+    lineHeight: 33.6,
     letterSpacing: 0,
   },
 
   head2: {
+    fontFamily: fontFamily.bold,
+    fontSize: 22,
+    lineHeight: 30.8,
+    letterSpacing: 0,
+  },
+
+  head3: {
+    fontFamily: fontFamily.bold,
     fontSize: 20,
-    lineHeight: 32,
-    fontWeight: fontWeight.semiBold,
+    lineHeight: 28,
     letterSpacing: -0.4,
   },
 
   title1: {
+    fontFamily: fontFamily.black,
     fontSize: 18,
     lineHeight: 27,
-    fontWeight: fontWeight.bold,
+    letterSpacing: -0.36,
   },
 
   title2: {
+    fontFamily: fontFamily.bold,
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: fontWeight.semiBold,
+    letterSpacing: -0.32,
   },
 
   label1: {
+    fontFamily: fontFamily.medium,
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: fontWeight.medium,
+    letterSpacing: -0.32,
+  },
+
+  label2: {
+    fontFamily: fontFamily.bold,
+    fontSize: 14,
+    lineHeight: 21,
+    letterSpacing: -0.28,
   },
 
   body1: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: fontWeight.regular,
+    fontFamily: fontFamily.medium,
+    fontSize: 14,
+    lineHeight: 21,
+    letterSpacing: -0.28,
   },
 
   body2: {
+    fontFamily: fontFamily.light,
     fontSize: 14,
     lineHeight: 21,
-    fontWeight: fontWeight.regular,
+    letterSpacing: -0.28,
   },
 
   caption1: {
+    fontFamily: fontFamily.light,
     fontSize: 12,
-    lineHeight: 18,
-    fontWeight: fontWeight.medium,
+    lineHeight: 16.8,
+    letterSpacing: -0.24,
   },
 
   caption2: {
+    fontFamily: fontFamily.medium,
+    fontSize: 12,
+    lineHeight: 16.8,
+    letterSpacing: -0.24,
+  },
+
+  caption3: {
+    fontFamily: fontFamily.regular,
     fontSize: 10,
-    lineHeight: 15,
-    fontWeight: fontWeight.regular,
+    lineHeight: 14,
+    letterSpacing: -0.2,
   },
 } as const;

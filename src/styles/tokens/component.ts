@@ -70,7 +70,7 @@ export const componentTokens = {
     secondary: {
       background: {
         default: semanticTokens.color.background.primary,
-        pressed: semanticTokens.color.background.secondary,
+        pressed: semanticTokens.color.background.tertiary,
         disabled: semanticTokens.color.background.tertiary,
       },
 
