@@ -28,7 +28,7 @@ export default function EditNicknameScreen() {
   const insets = useSafeAreaInsets();
   const profile = useMyProfile();
 
-  const [nickname, setNickname] = useState('');
+  const [nickname, setNickname] = useState(profile.nickname);
   const [focused, setFocused] = useState(false);
   const [selectedPhotoUri, setSelectedPhotoUri] = useState<string | null>(profile.photoUri);
 
