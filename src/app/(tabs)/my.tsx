@@ -1,5 +1,5 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import MyScreen from '@/features/my/MyScreen';
 
-export default function Screen() {
-  return <PlaceholderScreen title="My" description="프로필 및 기록 통계" />;
+export default function MyTab() {
+  return <MyScreen />;
 }
