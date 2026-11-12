@@ -39,7 +39,7 @@ export default function LoginScreen() {
   // UI 테스트용 임시 이동
   // 실제 소셜 로그인 API 연동 시 교체
   const handleMockLogin = () => {
-    router.push('/(onboarding)/nickname');
+    router.replace('/(onboarding)/nickname');
   };
 
   return (

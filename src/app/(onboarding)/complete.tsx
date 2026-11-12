@@ -15,7 +15,7 @@ export default function OnboardingCompleteScreen() {
 
   const { nickname } = useLocalSearchParams<{ nickname?: string }>();
 
-  const displayName = nickname?.trim() || '사용자';
+  const displayName = typeof nickname === 'string' ? nickname.trim() || '사용자' : '사용자';
 
   const handleStart = () => {
     //실제 회원가입 api 연동 전 임시 프로필 반영
