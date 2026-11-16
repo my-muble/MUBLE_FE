@@ -1,5 +1,23 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import { router, useLocalSearchParams } from 'expo-router';
 
-export default function Screen() {
-  return <PlaceholderScreen title="날짜별 기록" description="선택한 날짜의 기록 목록" />;
+import ArchiveDateDetailScreen from '@/features/archive/ArchiveDateDetailScreen';
+import { getArchiveDateDetailMock } from '@/features/archive/archiveDateDetailMock';
+
+export default function ArchiveDateDetailRoute() {
+  const { date } = useLocalSearchParams<{ date: string }>();
+  const detail = typeof date === 'string' ? getArchiveDateDetailMock(date) : undefined;
+
+  return (
+    <ArchiveDateDetailScreen
+      key={date}
+      detail={detail}
+      onBack={() => {
+        if (router.canGoBack()) {
+          router.back();
+        } else {
+          router.replace('/archive');
+        }
+      }}
+    />
+  );
 }
