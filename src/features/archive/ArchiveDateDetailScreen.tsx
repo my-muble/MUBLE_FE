@@ -12,12 +12,12 @@ import ArchiveDateAlbumRow from './ArchiveDateAlbumRow';
 import type { ArchiveDateDetail } from './archiveDateDetailMock';
 
 type ArchiveDateDetailScreenProps = {
-  detail?: ArchiveDateDetail;
+  detail: ArchiveDateDetail;
   onBack: () => void;
 };
 
 const { unit } = primitiveTokens;
-const { topBar, sectionHeader, emptyMessage, archiveTimeline } = componentTokens;
+const { topBar, sectionHeader, archiveTimeline } = componentTokens;
 const toolbarHeight = unit[20] + unit[32] + unit[12];
 
 export default function ArchiveDateDetailScreen({ detail, onBack }: ArchiveDateDetailScreenProps) {
@@ -25,8 +25,8 @@ export default function ArchiveDateDetailScreen({ detail, onBack }: ArchiveDateD
   const blurTarget = useRef<View>(null);
   const [scrolled, setScrolled] = useState(false);
   const headerHeight = insets.top + toolbarHeight;
-  const dateLabel = detail?.date.split('-').map(Number).join('.') ?? '';
-  const recordCount = detail?.albums.reduce((total, album) => total + album.recordCount, 0) ?? 0;
+  const dateLabel = detail.date.split('-').map(Number).join('.');
+  const recordCount = detail.albums.reduce((total, album) => total + album.recordCount, 0);
 
   return (
     <View style={styles.screen}>
@@ -45,30 +45,24 @@ export default function ArchiveDateDetailScreen({ detail, onBack }: ArchiveDateD
             paddingRight: insets.right + unit[22],
           }}
         >
-          {detail ? (
-            <>
-              <View style={styles.summary}>
-                <Text accessibilityRole="header" style={styles.date}>
-                  {dateLabel}.
-                </Text>
-                <View style={styles.counts}>
-                  <Text style={styles.count}>{recordCount} 기록</Text>
-                  <Image
-                    source={require('@/assets/archive/date-separator.svg')}
-                    style={styles.separator}
-                  />
-                  <Text style={styles.count}>{detail.albums.length} 앨범</Text>
-                </View>
-              </View>
-              <View style={styles.albums}>
-                {detail.albums.map((album) => (
-                  <ArchiveDateAlbumRow key={album.id} album={album} />
-                ))}
-              </View>
-            </>
-          ) : (
-            <Text style={styles.empty}>해당 날짜의 기록이 없어요.</Text>
-          )}
+          <View style={styles.summary}>
+            <Text accessibilityRole="header" style={styles.date}>
+              {dateLabel}.
+            </Text>
+            <View style={styles.counts}>
+              <Text style={styles.count}>{recordCount} 기록</Text>
+              <Image
+                source={require('@/assets/archive/date-separator.svg')}
+                style={styles.separator}
+              />
+              <Text style={styles.count}>{detail.albums.length} 앨범</Text>
+            </View>
+          </View>
+          <View style={styles.albums}>
+            {detail.albums.map((album) => (
+              <ArchiveDateAlbumRow key={album.id} album={album} />
+            ))}
+          </View>
         </ScrollView>
       </BlurTargetView>
 
@@ -142,7 +136,6 @@ const styles = StyleSheet.create({
   },
   separator: { width: 2.5083, height: 2.5083 },
   albums: { gap: unit[20] },
-  empty: { ...typography.body1, color: emptyMessage.message, textAlign: 'center' },
   header: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 1, pointerEvents: 'box-none' },
   backdrop: { ...StyleSheet.absoluteFill, pointerEvents: 'none' },
   toolbar: {
