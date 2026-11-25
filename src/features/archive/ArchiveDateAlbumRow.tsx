@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { componentTokens, primitiveTokens, semanticTokens, typography } from '@/styles';
 
@@ -8,9 +8,21 @@ import type { ArchiveDateDetailAlbum } from './archiveDateDetailMock';
 const { unit } = primitiveTokens;
 const { recordItem } = componentTokens.archiveTimeline;
 
-export default function ArchiveDateAlbumRow({ album }: { album: ArchiveDateDetailAlbum }) {
+export default function ArchiveDateAlbumRow({
+  album,
+  onPress,
+}: {
+  album: ArchiveDateDetailAlbum;
+  onPress?: () => void;
+}) {
   return (
-    <View style={styles.row}>
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={`${album.title}, 앨범 상세`}
+      disabled={!onPress}
+      onPress={onPress}
+      style={styles.row}
+    >
       <View style={[styles.artwork, album.showVinyl && styles.vinylArtwork]}>
         {album.showVinyl && (
           <View style={styles.vinylCrop}>
@@ -55,7 +67,7 @@ export default function ArchiveDateAlbumRow({ album }: { album: ArchiveDateDetai
           {album.preview}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 

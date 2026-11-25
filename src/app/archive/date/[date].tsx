@@ -15,6 +15,7 @@ export default function ArchiveDateDetailRoute() {
     <ArchiveDateDetailScreen
       key={date}
       detail={detail}
+      onAlbumPress={(id) => router.push({ pathname: '/archive/album/[id]', params: { id } })}
       onBack={() => {
         if (router.canGoBack()) {
           router.back();

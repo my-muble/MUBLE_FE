@@ -1,5 +1,24 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import { Redirect, router, useLocalSearchParams } from 'expo-router';
 
-export default function Screen() {
-  return <PlaceholderScreen title="앨범 기록 상세" description="앨범 및 수록곡별 내 기록" />;
+import ArchiveAlbumDetailScreen from '@/features/archive/ArchiveAlbumDetailScreen';
+import { getArchiveRecordAlbum } from '@/features/archive/archiveRecordsMock';
+
+export default function ArchiveAlbumRoute() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const album = typeof id === 'string' ? getArchiveRecordAlbum(id) : undefined;
+  if (!album) return <Redirect href="/archive" />;
+
+  return (
+    <ArchiveAlbumDetailScreen
+      key={id}
+      album={album}
+      onBack={() => (router.canGoBack() ? router.back() : router.replace('/archive'))}
+      onTrackPress={(trackId) =>
+        router.push({ pathname: '/archive/track/[id]', params: { id: trackId } })
+      }
+      onAllRecordsPress={() =>
+        router.push({ pathname: '/archive/album/[id]/records', params: { id } })
+      }
+    />
+  );
 }
