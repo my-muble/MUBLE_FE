@@ -14,13 +14,18 @@ import type { ArchiveDateDetail } from './archiveDateDetailMock';
 type ArchiveDateDetailScreenProps = {
   detail: ArchiveDateDetail;
   onBack: () => void;
+  onAlbumPress?: (id: string) => void;
 };
 
 const { unit } = primitiveTokens;
 const { topBar, sectionHeader, archiveTimeline } = componentTokens;
 const toolbarHeight = unit[20] + unit[32] + unit[12];
 
-export default function ArchiveDateDetailScreen({ detail, onBack }: ArchiveDateDetailScreenProps) {
+export default function ArchiveDateDetailScreen({
+  detail,
+  onBack,
+  onAlbumPress,
+}: ArchiveDateDetailScreenProps) {
   const insets = useSafeAreaInsets();
   const blurTarget = useRef<View>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -60,7 +65,11 @@ export default function ArchiveDateDetailScreen({ detail, onBack }: ArchiveDateD
           </View>
           <View style={styles.albums}>
             {detail.albums.map((album) => (
-              <ArchiveDateAlbumRow key={album.id} album={album} />
+              <ArchiveDateAlbumRow
+                key={album.id}
+                album={album}
+                onPress={() => onAlbumPress?.(album.id)}
+              />
             ))}
           </View>
         </ScrollView>
