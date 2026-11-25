@@ -7,6 +7,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { componentTokens, layout, primitiveTokens, typography } from '@/styles';
 
+import ArchiveAlbumList from './ArchiveAlbumList';
+import type { ArchiveAlbumListItem } from './archiveAlbumListData';
 import ArchiveDateCard from './ArchiveDateCard';
 import ArchiveEmptyState from './ArchiveEmptyState';
 import { getArchiveMonths, getArchiveYears, type ArchiveTimelineData } from './archiveTimeline';
@@ -15,6 +17,8 @@ import ArchiveYearSelect from './ArchiveYearSelect';
 type ArchiveScreenProps = ArchiveTimelineData & {
   onDatePress?: (date: string) => void;
   onRecordPress?: () => void;
+  albumItems?: readonly ArchiveAlbumListItem[];
+  onAlbumPress?: (id: string) => void;
 };
 
 const tabs = [
@@ -40,6 +44,8 @@ export default function ArchiveScreen({
   latestYear,
   onDatePress,
   onRecordPress,
+  albumItems = [],
+  onAlbumPress,
 }: ArchiveScreenProps) {
   const [tab, setTab] = useState<ArchiveTab>('timeline');
   const [year, setYear] = useState<number>();
@@ -99,7 +105,9 @@ export default function ArchiveScreen({
         </View>
       </View>
 
-      {days.length === 0 ? (
+      {tab === 'album' && albumItems.length > 0 ? (
+        <ArchiveAlbumList albums={albumItems} onAlbumPress={onAlbumPress} />
+      ) : days.length === 0 || tab === 'album' ? (
         <ArchiveEmptyState onRecordPress={onRecordPress} />
       ) : (
         tab === 'timeline' && (
