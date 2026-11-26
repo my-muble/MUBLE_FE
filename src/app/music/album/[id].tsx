@@ -1,5 +1,5 @@
-import { PlaceholderScreen } from '@/components/common/PlaceholderScreen';
+import MusicDetailScreen from '@/features/music/MusicDetailScreen';
 
 export default function Screen() {
-  return <PlaceholderScreen title="앨범 상세" description="앨범 정보 · 수록곡 · 기록" />;
+  return <MusicDetailScreen mode="album" />;
 }
