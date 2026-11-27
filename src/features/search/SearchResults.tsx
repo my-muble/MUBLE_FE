@@ -14,6 +14,10 @@ import { colors, layout, radius, typography } from '@/styles';
 
 import type { SearchData, SearchItem, SearchTab } from './searchData';
 
+const ALL_TAB_ARTIST_LIMIT = 4;
+const ALL_TAB_SONG_LIMIT = 5;
+const ALL_TAB_ALBUM_LIMIT = 5;
+
 const TABS: { id: SearchTab; label: string }[] = [
   { id: 'all', label: '전체' },
   { id: 'song', label: '곡' },
@@ -215,19 +219,29 @@ export default function SearchResults({ data, activeTab, onTabChange, onItemPres
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {showArtists && isAll && data.artists.length > 0 && (
+        {isAll && (
           <View style={styles.section}>
-            <SectionHeading title="아티스트" showAll onViewAll={() => onTabChange('artist')} />
+            <SectionHeading
+              title="아티스트"
+              showAll={data.artists.length > ALL_TAB_ARTIST_LIMIT}
+              onViewAll={() => onTabChange('artist')}
+            />
 
-            <ArtistCarousel items={data.artists} onPressItem={onItemPress} />
+            {data.artists.length === 0 ? (
+              <EmptySection />
+            ) : (
+              <ArtistCarousel
+                items={data.artists.slice(0, ALL_TAB_ARTIST_LIMIT)}
+                onPressItem={onItemPress}
+              />
+            )}
           </View>
         )}
-
         {showSongs && (
           <View style={styles.section}>
             <SectionHeading
               title="곡"
-              showAll={isAll && data.songs.length > 0}
+              showAll={isAll && data.songs.length > ALL_TAB_SONG_LIMIT}
               onViewAll={() => onTabChange('song')}
             />
 
@@ -235,7 +249,7 @@ export default function SearchResults({ data, activeTab, onTabChange, onItemPres
               <EmptySection />
             ) : (
               data.songs
-                .slice(0, isAll ? 5 : undefined)
+                .slice(0, isAll ? ALL_TAB_SONG_LIMIT : undefined)
                 .map((item) => (
                   <ResultRow key={item.id} item={item} onPress={() => onItemPress?.(item)} />
                 ))
@@ -247,14 +261,17 @@ export default function SearchResults({ data, activeTab, onTabChange, onItemPres
           <View style={styles.section}>
             <SectionHeading
               title="앨범"
-              showAll={isAll && data.albums.length > 0}
+              showAll={isAll && data.albums.length > ALL_TAB_ALBUM_LIMIT}
               onViewAll={() => onTabChange('album')}
             />
 
             {data.albums.length === 0 ? (
               <EmptySection />
             ) : isAll ? (
-              <AlbumGrid items={data.albums.slice(0, 6)} onPressItem={onItemPress} />
+              <AlbumGrid
+                items={data.albums.slice(0, ALL_TAB_ALBUM_LIMIT)}
+                onPressItem={onItemPress}
+              />
             ) : (
               data.albums.map((item) => (
                 <ResultRow key={item.id} item={item} album onPress={() => onItemPress?.(item)} />
